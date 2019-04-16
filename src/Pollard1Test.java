@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigInteger;
 
-public class Pollard3Test extends PollardTest {
+public class Pollard1Test extends PollardTest {
 	@BeforeEach
 	void setUp() throws Exception {
-		pol = new Pollard3();
+		pol = new Pollard1();
 	}
 
 	@AfterEach
