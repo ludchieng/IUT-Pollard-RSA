@@ -14,10 +14,10 @@ public class Pollard2 implements Pollard {
 		return null;
 	}
 	
+	
 	private BigInteger bi(String s) {
 		return new BigInteger(s);
 	}
-	
 	private BigInteger bi(int i) {
 		return new BigInteger(Integer.toString(i));
 	}
