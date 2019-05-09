@@ -1,3 +1,4 @@
+package math;
 import java.math.BigInteger;
 
 public interface Pollard {

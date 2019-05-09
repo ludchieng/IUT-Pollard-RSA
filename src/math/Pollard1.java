@@ -1,6 +1,7 @@
+package math;
 import java.math.BigInteger;
 
-public class Pollard2 implements Pollard {
+public class Pollard1 implements Pollard {
 
 	@Override
 	public BigInteger factorize(BigInteger n) {

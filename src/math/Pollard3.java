@@ -1,3 +1,4 @@
+package math;
 import java.math.BigInteger;
 
 public class Pollard3 implements Pollard {
@@ -10,7 +11,7 @@ public class Pollard3 implements Pollard {
 		while(pgcd(n,b.subtract(bi(1))).equals(bi(1))) {
 			b = b.modPow(bi(i), n);
 			//System.out.println("b^" + i + " = " + b);
-			if(i%10000 == 0) {
+			if(i%100000 == 0) {
 				System.out.println("# Reached i=" + i);
 			}
 			i++;

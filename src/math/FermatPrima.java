@@ -1,3 +1,4 @@
+package math;
 import java.math.BigInteger;
 import java.util.Random;
 
@@ -15,7 +16,7 @@ public class FermatPrima {
 			BigInteger res = rndBi.modPow(n.subtract(bi(1)), n);
 			if(!res.equals(bi(1))) {
 				//n is not prime
-				System.out.println("#FERMAPRIMA: n=" + n + "\t" + rndBi + "^n-1=" + res);
+				//System.out.println("#FERMAPRIMA: n=" + n + "\t" + rndBi + "^n-1=" + res);
 				return false;
 			}
 		}
