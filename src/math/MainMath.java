@@ -2,7 +2,7 @@ package math;
 import java.math.BigInteger;
 import java.util.Scanner;
 
-public class Main {
+public class MainMath {
 	public static void main(String[] args) {
 		/*
 		//Test factorisation saisie
@@ -14,13 +14,12 @@ public class Main {
 		pol.factorize(n);
 		*/
 		
-		/*
+		
 		//Test factorisation de très grand nombre
 		Pollard pol = new Pollard3();
-		BigInteger n = PrimeNumbers.genBigN(35);
+		BigInteger n = PrimeNumbers.genBigN(10);
 		System.out.println(n);
 		pol.factorize(n);
-		*/
 		
 		
 		

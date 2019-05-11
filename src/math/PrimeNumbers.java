@@ -39,8 +39,8 @@ public class PrimeNumbers {
 		String pStr;
 		BigInteger p;
 		do {
-			pStr = "";
-			for(int i=0; i<nbDigits-1; i++) {
+			pStr = String.valueOf((int)(Math.random()*9+1));
+			for(int i=0; i<nbDigits-2; i++) {
 				pStr += String.valueOf(Math.random()).charAt(2);
 			}
 			pStr += lastDigit[ (int) (Math.random()*4) ];
