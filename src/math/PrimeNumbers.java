@@ -1,40 +1,65 @@
 package math;
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.Math;
 
 public class PrimeNumbers {
+
+	private static final int NB = 100008;
+
+	/**
+	 * Get a prime number from a list
+	 * @param index
+	 * @return BigInteger which is prime
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public static BigInteger get(int index) throws FileNotFoundException, IOException {
+		// Check argument validity
+		if(index < 0 || index > NB) {
+			throw new IllegalArgumentException();
+		}
+		
+		// Load prime numbers list text file
+		BufferedReader br = new BufferedReader(new FileReader("./prime_numbers_list.txt"));
+		// Skip lines
+		for(int i=0; i<index; i++) {
+			br.readLine();
+		}
+		
+		return new BigInteger(br.readLine());
+	}
 	
 	/**
 	 * Pick a random prime number from a list
 	 * @return BigInteger which is prime
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public static BigInteger genP() {
-		return pNumbers[ (int) (Math.random() * pNumbers.length) ];
+	public static BigInteger getRnd() throws FileNotFoundException, IOException {
+		int rnd = (int) (Math.random()*NB);
+		return PrimeNumbers.get(rnd);
 	}
 	
 	/**
 	 * Generate random composite number from two known prime numbers
 	 * @return BigInteger which is the product of 2 prime numbers
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
 	 */
-	public static BigInteger genN() {
-		//Generate indexes
-		int index1 = (int) (Math.random() * pNumbers.length);
-		
-		int index2;
-		do {
-			index2 = (int) (Math.random() * 100 + index1);
-		}while(index2 >= pNumbers.length);
-		
-		//Multiply two random prime numbers
-		return pNumbers[index1].multiply(pNumbers[index2]);
+	public static BigInteger genN() throws FileNotFoundException, IOException {
+		return getRnd().multiply(getRnd());
 	}
 	
 	/**
 	 * Generate prime number with Fermat's Primality Test
 	 * @return BigInteger which is probably prime
 	 */
-	public static BigInteger genP(int nbDigits) {
+	public static BigInteger genFermatP(int nbDigits) {
 		final int[] lastDigit = {1, 3, 7, 9};
 		String pStr;
 		BigInteger p;
@@ -53,18 +78,12 @@ public class PrimeNumbers {
 	 * Generate random composite number from two probably prime numbers
 	 * @return BigInteger which is the product of 2 probably prime numbers
 	 */
-	public static BigInteger genBigN(int nbDigitsN) {
+	public static BigInteger genFermatN(int nbDigitsN) {
 		int nbDigitsP = nbDigitsN/2;
-		BigInteger p = genP(nbDigitsP);
-		BigInteger q = genP(nbDigitsP);
+		BigInteger p = genFermatP(nbDigitsP);
+		BigInteger q = genFermatP(nbDigitsP);
 		System.out.println("\np=" + p);
 		System.out.println("q=" + q);
 		return p.multiply(q);
 	}
-	
-	private static BigInteger[] pNumbers = {
-			new BigInteger("0"),
-			new BigInteger("0"),
-	};
-	
 }

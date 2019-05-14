@@ -1,4 +1,6 @@
 package math;
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -14,14 +16,22 @@ public class MainMath {
 		pol.factorize(n);
 		*/
 		
-		
+		/*
 		//Test factorisation de très grand nombre
 		Pollard pol = new Pollard3();
 		BigInteger n = PrimeNumbers.genBigN(10);
 		System.out.println(n);
 		pol.factorize(n);
+		*/
 		
-		
-		
+		/*
+		//Test getting prime numbers from list
+		try {
+			System.out.println(PrimeNumbers.get(0));
+			System.out.println(PrimeNumbers.get(100007));
+			System.out.println(PrimeNumbers.getRnd());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}*/
 	}
 }

@@ -6,8 +6,9 @@ public class Pollard1 implements Pollard {
 	public BigInteger factorize(BigInteger n) {
 		int d = 1;
 		// Must define x0 as Integer -- First value to start testing
-		
+		int x0 = 3;
 		// Define b as Integer --
+		int b = 1;
 		
 		BigInteger x = bi(x0);
 		BigInteger u = bi(x0);

@@ -1,6 +1,7 @@
 package math;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
@@ -8,21 +9,34 @@ import java.sql.Timestamp;
 
 public class DataMiner {
 
-	private static final int NB_DIGITS_P_Q = 5;
 	private static final int NB_ITERATIONS = 10000;
+	private static final String ALGO = "pol3";
 	
-	public static void main(String[] a) throws FileNotFoundException, UnsupportedEncodingException {
+	public static void main(String[] a) throws IOException {
 		//Initialize DataMiner
 		long i = 1;
-		PrintWriter writer = new PrintWriter("./log-"+System.currentTimeMillis()+".csv", "UTF-8");
 		long timeInit = System.currentTimeMillis();
+		
+		PrintWriter writer = new PrintWriter("./log-"
+				+ timeInit + ".csv", "UTF-8");
+		
 		System.out.println("#### DATA MINER - " + timeInit);
-		writer.println("#### DATA MINER - " + timeInit);
-		writer.println("#### Pollard 3 ");
+		writer.println("#### DATA MINER" + '\n'
+				+ "Timestamp: " + timeInit + '\n'
+				+ "Algorithm: " + ALGO + '\n'
+				+ "Iterations limit: " + NB_ITERATIONS + '\n'
+				+ "User: " + System.getProperty("user.name") + '\n'
+				+ "Available cores: "
+				+ Runtime.getRuntime().availableProcessors() + '\n'
+				+ "Memory available to JVM: " + 
+		        Runtime.getRuntime().totalMemory() + " bytes" + '\n'
+		);
 		Pollard3 p3 = new Pollard3();
 
-		writer.println("\"n\",\"p\",\"q\",\"success\",\"bInit\",\"b\",\"i\",\"time (µs)\"");
+		// Print header
+		writer.println("\"\",\"n\",\"p\",\"q\",\"success\",\"bInit\",\"b\",\"i\",\"time (µs)\"");
 		
+		// Begin iterations
 		while(i<NB_ITERATIONS) {
 			//Prepare iteration
 			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -30,8 +44,8 @@ public class DataMiner {
 			long timeBegin, timeEnd, time;
 			
 			//Generate n
-			BigInteger p = PrimeNumbers.genP(NB_DIGITS_P_Q);
-			BigInteger q = PrimeNumbers.genP(NB_DIGITS_P_Q);
+			BigInteger p = PrimeNumbers.getRnd();
+			BigInteger q = PrimeNumbers.getRnd();
 			BigInteger n = p.multiply(q);
 			System.out.println("p = " + p);
 			System.out.println("q = " + q);
@@ -52,12 +66,13 @@ public class DataMiner {
 				success = String.valueOf(resP);
 			}
 			
-			writer.println("\""+ n + "\",\"" + p + "\",\"" + q + "\",\"" + success + "\",\"" + 
+			writer.println("\"" + "" + "\",\"" +  n + "\",\"" + p + "\",\"" + q + "\",\"" + success + "\",\"" + 
 					res.getBInit() + "\",\"" +  res.getB() + "\",\"" + res.getI() + "\",\"" + time/1000 + "\"");
 			i++;
 		}
 		
-		//End DataMiner
+		// Close DataMiner
 		writer.close();
+		System.out.println("#### DATA MINER - DONE");
 	}
 }
