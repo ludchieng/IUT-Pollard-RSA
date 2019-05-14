@@ -13,6 +13,7 @@ public class View extends JPanel {
 		btnFactorize = new JButton("Factoriser");
 		txtfN = new JTextField();
 		txtfP = new JTextField();
+		txtfP.setEditable(false);
 		
 		this.setLayout(new BorderLayout());
 		Controller cntrl = new Controller(this);
@@ -22,7 +23,7 @@ public class View extends JPanel {
 		panFields.setLayout(new GridLayout(2,2));
 		panFields.add(new JLabel("Entrez n:"));
 		panFields.add(txtfN);
-		panFields.add(new JLabel("Entrez p:"));
+		panFields.add(new JLabel("Résultat p:"));
 		panFields.add(txtfP);
 		this.add(panFields, BorderLayout.CENTER);
 		
