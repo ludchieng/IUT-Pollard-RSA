@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 public class DataMiner {
 
-	private static final int NB_ITERATIONS = 10000;
+	private static final int NB_ITERATIONS = 100000;
 	private static final String ALGO = "pol3";
 	
 	public static void main(String[] a) throws IOException {

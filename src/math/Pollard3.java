@@ -5,22 +5,23 @@ public class Pollard3 implements Pollard {
 
 	@Override
 	public BigInteger factorize(BigInteger n) {
-		BigInteger x0 = bi(3);
-		BigInteger b = x0;
-		System.out.println("\n## POLLARD 3   n=" + n + "\tb=" + b);
+		BigInteger x0 = bi(2);
+		BigInteger x = x0;
+		System.out.println("\n## POLLARD 3   n=" + n + "\tx0=" + x);
 		long i = 2;
-		while(pgcd(n,b.subtract(bi(1))).equals(bi(1))) {
-			b = b.modPow(bi(i), n);
-			System.out.println(b + "^" + i + " = " + b);
+		while(pgcd(n,x.subtract(bi(1))).equals(bi(1))) {
+			System.out.print(x + "^" + i + " = ");
+			x = x.modPow(bi(i), n);
+			System.out.println(x);
 			if(i%100000 == 0) {
-				System.out.println("# Reached i=" + i + "\tvalue=" + b);
+				System.out.println("# Reached i=" + i + "\tvalue=" + x);
 			}
 			i++;
 		}
 		i--;
-		System.out.println("b^" + i + " = " + b);
-		BigInteger p = pgcd(n,b.subtract(bi(1)));
-		System.out.println("pgcd(" + n + "," + (b.subtract(bi(1))) + ") = " + p);
+		System.out.println("x^" + i + " = " + x);
+		BigInteger p = pgcd(n,x.subtract(bi(1)));
+		System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
 		return p;
 	}
 	

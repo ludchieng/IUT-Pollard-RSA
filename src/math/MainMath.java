@@ -17,12 +17,20 @@ public class MainMath {
 		*/
 		
 		/*
-		//Test factorisation de très grand nombre
+		//Test factorisation de très grand nombre POLLARD 3
 		Pollard pol = new Pollard3();
 		BigInteger n = PrimeNumbers.genBigN(10);
 		System.out.println(n);
 		pol.factorize(n);
 		*/
+		
+		
+		//Test factorisation POLLARD 1
+		Pollard pol = new Pollard1();
+		BigInteger n = new BigInteger("9919754852093663");
+		System.out.println(n);
+		pol.factorize(n);
+		
 		
 		/*
 		//Test getting prime numbers from list

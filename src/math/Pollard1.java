@@ -1,27 +1,44 @@
 package math;
 import java.math.BigInteger;
+import java.util.LinkedList;
 
 public class Pollard1 implements Pollard {
 
 	public BigInteger factorize(BigInteger n) {
+		LinkedList<BigInteger> history = new LinkedList<>();
 		int d = 1;
-		// Must define x0 as Integer -- First value to start testing
-		int x0 = 3;
-		// Define b as Integer --
-		int b = 1;
+		BigInteger x0 = bi("3");
+		BigInteger b = bi("1");
 		
-		BigInteger x = bi(x0);
-		BigInteger u = bi(x0);
-		System.out.println("n = "+n+"\tx0 = "+x0);
+		BigInteger x = x0;
+		BigInteger u = x0;
+		System.out.println("\n## POLLARD 1   n=" + n + "\tx0=" + x);
 		while(true) {
 			for(int j=d+1; j < 2d; j++) {
-				x = (x.pow(2)).add(bi(b)).mod(n);
+				System.out.print(x);
+				
+				x = x.modPow(bi(2), n).add(b).mod(n);
 				BigInteger pgcd = pgcd(x.subtract(u), n);
+				
+				System.out.println("^2+" + b + "=" + x);
+
+				if(history.contains(x)) {
+					throw new IllegalStateException("Loop detected: " + x);
+				}
+				history.add(x);
+				
 				if (pgcd.compareTo(bi(1)) > 0 ){
-					System.out.println("p = "+pgcd+"\tq = "+n.divide(pgcd));
+					history = new LinkedList<>();
+
+					System.out.println("\nx-u=" + x + "-" + u + "=" + (x.subtract(u)));
+					System.out.println("pgcd(" + x.subtract(u)+","+n+")="+pgcd);
+					System.out.println("pgcd("+n+","+pgcd+")="+pgcd);
+					System.out.println("p="+pgcd+"\tq="+n.divide(pgcd));
+					
 					return pgcd;
 				}
 			}
+			//System.out.println("################################################################################");
 			u = x;
 			d *= 2;
 		}

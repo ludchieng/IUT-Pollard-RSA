@@ -3,7 +3,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 
 import math.Pollard;
 
@@ -26,8 +28,9 @@ public abstract class PollardTest {
 		assertEquals(bi(5),pol.pgcd(bi(15),bi(20)));
 		assertEquals(bi(1),pol.pgcd(bi(29),bi(7)));
 	}
-
+	
 	@Test
+	@Order(1)
 	void test_factorize_2_digits() {
 		BigInteger n = new BigInteger("77");
 		BigInteger p = new BigInteger("11");
@@ -37,6 +40,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(2)
 	void test_factorize_3_digits() {
 		BigInteger n = new BigInteger("437");
 		BigInteger p = new BigInteger("19");
@@ -46,6 +50,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(3)
 	void test_factorize_4_digits() {
 		BigInteger n = new BigInteger("5917");
 		BigInteger p = new BigInteger("97");
@@ -55,6 +60,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(4)
 	void test_factorize_5_digits() {
 		BigInteger n = new BigInteger("38021");
 		BigInteger p = new BigInteger("197");
@@ -62,8 +68,9 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-
+/*
 	@Test
+	@Order(5)
 	void test_factorize_6_digits() {
 		BigInteger n = new BigInteger("145157");
 		BigInteger p = new BigInteger("379");
@@ -73,6 +80,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(6)
 	void test_factorize_7_digits() {
 		BigInteger n = new BigInteger("1047847");
 		BigInteger p = new BigInteger("997");
@@ -82,6 +90,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(7)
 	void test_factorize_8_digits() {
 		BigInteger n = new BigInteger("12467957");
 		BigInteger p = new BigInteger("3529");
@@ -91,6 +100,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(8)
 	void test_factorize_9_digits() {
 		BigInteger n = new BigInteger("110103013");
 		BigInteger p = new BigInteger("10487");
@@ -100,6 +110,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(9)
 	void test_factorize_20_digits() {
 		BigInteger n = new BigInteger("31360014560001377519");
 		BigInteger p = new BigInteger("5600000741");
@@ -109,6 +120,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(10)
 	void test_factorize_21_digits() {
 		BigInteger n = new BigInteger("101137273118300999101");
 		BigInteger p = new BigInteger("10056702277");
@@ -118,6 +130,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(11)
 	void test_factorize_22_digits() {
 		BigInteger n = new BigInteger("7354212367043346579403");
 		BigInteger p = new BigInteger("85756703803");
@@ -127,6 +140,7 @@ public abstract class PollardTest {
 	}
 
 	@Test
+	@Order(12)
 	void test_factorize_24_digits() {
 		BigInteger n = new BigInteger("735421174897763935603447");
 		BigInteger p = new BigInteger("857567007931");
@@ -134,5 +148,5 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-
+*/
 }
