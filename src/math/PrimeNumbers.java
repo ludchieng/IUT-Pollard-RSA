@@ -45,6 +45,12 @@ public class PrimeNumbers {
 		return PrimeNumbers.get(rnd);
 	}
 	
+
+	public static BigInteger getRndUpTo(int maxIndex) throws FileNotFoundException, IOException {
+		int rnd = (int) (Math.random()*maxIndex);
+		return PrimeNumbers.get(rnd);
+	}
+	
 	/**
 	 * Generate random composite number from two known prime numbers
 	 * @return BigInteger which is the product of 2 prime numbers

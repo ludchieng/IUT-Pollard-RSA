@@ -6,15 +6,17 @@ public class PollardResult {
 	
 	private BigInteger n;
 	private BigInteger p;
-	private BigInteger bInit;
-	private BigInteger b;
+	private BigInteger x0;
+	private BigInteger xFinal;
+	private long nbReboot;
 	private long i;
 	
-	public PollardResult(BigInteger n, BigInteger p, BigInteger bInit, BigInteger b, long i) {
+	public PollardResult(BigInteger n, BigInteger p, BigInteger x0, BigInteger xFinal, long nbReboot, long i) {
 		this.n = n;
 		this.p = p;
-		this.bInit = bInit;
-		this.b = b;
+		this.x0 = x0;
+		this.xFinal = xFinal;
+		this.nbReboot = nbReboot;
 		this.i = i;
 	}
 
@@ -26,12 +28,20 @@ public class PollardResult {
 		return p;
 	}
 
-	public BigInteger getBInit() {
-		return bInit;
+	public BigInteger getX0() {
+		return x0;
 	}
 
-	public BigInteger getB() {
-		return b;
+	public BigInteger getXFinal() {
+		return xFinal;
+	}
+
+	public long setNbReboot(long v) {
+		return nbReboot = v;
+	}
+
+	public long getNbReboot() {
+		return nbReboot;
 	}
 
 	public long getI() {

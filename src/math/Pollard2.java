@@ -3,6 +3,8 @@ import java.math.BigInteger;
 
 public class Pollard2 implements Pollard {
 
+	private long nbReboot = 0;
+	
 	@Override
 	public BigInteger factorizeWith(BigInteger n, BigInteger x0) {
 		
@@ -24,13 +26,27 @@ public class Pollard2 implements Pollard {
 		}
 	}
 
+	@Override
 	public BigInteger factorize(BigInteger n) {
 		// Generate random x0
 		BigInteger x0 = Numbers.rnd(n);
 		
 		return this.factorizeWith(n, x0);
 	}
-
+	
+	
+	@Override
+	public PollardResult performWith(BigInteger n, BigInteger x0) {
+		// TODO
+		return null;
+	}
+	
+	@Override
+	public PollardResult perform(BigInteger n) {
+		// TODO
+		return null;
+	}
+	
 	@Override
 	public BigInteger pgcd(BigInteger a, BigInteger b) {
 		if(b.equals(bi(0))) {

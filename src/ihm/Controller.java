@@ -21,7 +21,7 @@ public class Controller implements ActionListener {
 		JButton src = (JButton)arg0.getSource();
 		if(v.isBtnFactorize(src)) {
 			BigInteger n = new BigInteger(v.getTxtfN());
-			//Rajouter le x0 sinon ça marche ap
+			BigInteger x0 = Numbers.rnd(n);
 			BigInteger p = m.factorizeP3(n, x0);
 			this.v.setTxtfP(p.toString());
 		}
