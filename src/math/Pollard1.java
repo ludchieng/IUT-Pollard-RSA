@@ -3,10 +3,8 @@ import java.math.BigInteger;
 
 public class Pollard1 implements Pollard {
 
-	public BigInteger factorize(BigInteger n) {
+	public BigInteger factorize(BigInteger n, int x0) {
 		int d = 1;
-		// Must define x0 as Integer -- First value to start testing
-		int x0 = 3;
 		// Define b as Integer --
 		int b = 1;
 		
@@ -37,6 +35,7 @@ public class Pollard1 implements Pollard {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private BigInteger bi(String s) {
 		return new BigInteger(s);
 	}

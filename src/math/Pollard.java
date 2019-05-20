@@ -7,7 +7,7 @@ public interface Pollard {
 	 * @param n		integer to factorize
 	 * @return one of the two divider of n
 	 */
-	public abstract BigInteger factorize(BigInteger n);
+	public abstract BigInteger factorize(BigInteger n, int x);
 	
 	public BigInteger pgcd(BigInteger a, BigInteger b);
 }

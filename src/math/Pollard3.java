@@ -4,9 +4,8 @@ import java.math.BigInteger;
 public class Pollard3 implements Pollard {
 
 	@Override
-	public BigInteger factorize(BigInteger n) {
-		BigInteger x0 = bi(3);
-		BigInteger b = x0;
+	public BigInteger factorize(BigInteger n, int x0) {
+		BigInteger b = bi(x0);
 		System.out.println("\n## POLLARD 3   n=" + n + "\tb=" + b);
 		long i = 2;
 		while(pgcd(n,b.subtract(bi(1))).equals(bi(1))) {
