@@ -9,5 +9,7 @@ public interface Pollard {
 	 */
 	public abstract BigInteger factorize(BigInteger n);
 	
+	public abstract BigInteger factorizeWith(BigInteger n, BigInteger x0);
+	
 	public BigInteger pgcd(BigInteger a, BigInteger b);
 }

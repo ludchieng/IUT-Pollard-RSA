@@ -68,7 +68,7 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-/*
+
 	@Test
 	@Order(5)
 	void test_factorize_6_digits() {
@@ -108,7 +108,7 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-
+/*
 	@Test
 	@Order(9)
 	void test_factorize_20_digits() {
@@ -149,4 +149,14 @@ public abstract class PollardTest {
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
 */
+	@Test
+	@Order(13)
+	void test_factorize_3_digits_pb_de_ses_morts() {
+		BigInteger n = new BigInteger("671");
+		BigInteger p = new BigInteger("11");
+		BigInteger q = new BigInteger("61");
+		BigInteger divider = pol.factorize(n);
+		assertTrue(divider.equals(p) || divider.equals(q));
+	}
+
 }

@@ -16,16 +16,16 @@ public class Model {
 		p3 = new Pollard3();
 	}
 	
-	public BigInteger factorizeP1(BigInteger bi) {
-		return p1.factorize(bi);
+	public BigInteger factorizeP1(BigInteger bi, int x0) {
+		return p1.factorize(bi, x0);
 	}
 	
-	public BigInteger factorizeP2(BigInteger bi) {
-		return p2.factorize(bi);
+	public BigInteger factorizeP2(BigInteger bi, int x0) {
+		return p2.factorize(bi, x0);
 	}
 	
-	public BigInteger factorizeP3(BigInteger bi) {
-		return p3.factorize(bi);
+	public BigInteger factorizeP3(BigInteger bi, int x0) {
+		return p3.factorize(bi, x0);
 	}
 	
 }

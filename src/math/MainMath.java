@@ -24,13 +24,13 @@ public class MainMath {
 		pol.factorize(n);
 		*/
 		
-		
+		/*
 		//Test factorisation POLLARD 1
 		Pollard pol = new Pollard1();
 		BigInteger n = new BigInteger("9919754852093663");
 		System.out.println(n);
 		pol.factorize(n);
-		
+		*/
 		
 		/*
 		//Test getting prime numbers from list
@@ -41,5 +41,18 @@ public class MainMath {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}*/
+		
+		/*
+		//Test random big integer
+		for(int i=0; i<100; i++) {
+			System.out.println(Numbers.rnd(new BigInteger("1000000000")));
+		}
+		for(int i=0; i<20; i++) {
+			System.out.println(Numbers.rnd(new BigInteger("1000000")));
+		}
+		for(int i=0; i<10; i++) {
+			System.out.println(Numbers.rnd(new BigInteger("1000")));
+		}
+		*/
 	}
 }

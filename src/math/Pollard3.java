@@ -4,8 +4,7 @@ import java.math.BigInteger;
 public class Pollard3 implements Pollard {
 
 	@Override
-	public BigInteger factorize(BigInteger n) {
-		BigInteger x0 = bi(2);
+	public BigInteger factorizeWith(BigInteger n, BigInteger x0) {
 		BigInteger x = x0;
 		System.out.println("\n## POLLARD 3   n=" + n + "\tx0=" + x);
 		long i = 2;
@@ -21,18 +20,23 @@ public class Pollard3 implements Pollard {
 		i--;
 		System.out.println("x^" + i + " = " + x);
 		BigInteger p = pgcd(n,x.subtract(bi(1)));
+		
+		if(p.equals(n)) {
+			throw new IllegalStateException("# ILLEGAL X VALUE: trying again with a different x0");
+		}
+		
 		System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
 		return p;
 	}
-	
-	
+
+
 	/**
 	 * Compute Pollard's Rho Algorithm and give some details about the calculation
 	 * @param n
 	 * @return PollardResult
 	 */
-	public PollardResult perform(BigInteger n) {
-		BigInteger bInit = bi(3);
+	public PollardResult perform(BigInteger n, BigInteger x0) {
+		BigInteger bInit = x0;
 		BigInteger b = bi(bInit.toString());
 		System.out.println("\n## POLLARD 3   n=" + n + "\tb=" + b);
 		long i = 2;
@@ -47,11 +51,30 @@ public class Pollard3 implements Pollard {
 		i--;
 		System.out.println("b^" + i + " = " + b);
 		BigInteger p = pgcd(n,b.subtract(bi(1)));
+		
+		if(p.equals(n)) {
+			throw new IllegalStateException("# ILLEGAL X VALUE: trying again with a different x0");
+		}
+		
 		System.out.println("pgcd(" + n + "," + (b.subtract(bi(1))) + ") = " + p);
 		return new PollardResult(n, p, bInit, b, i);
 	}
 	
-	
+	public BigInteger factorize(BigInteger n) {
+		// Generate random x0
+		BigInteger x0 = Numbers.rnd(n);
+		BigInteger p;
+		try {
+			p = this.factorizeWith(n, x0);
+		} catch (IllegalStateException e) {
+			System.out.println("# ILLEGAL X VALUE: Trying again with a different x0");
+			p = this.factorize(n);
+		}
+		
+		return p;
+	}
+
+
 	public BigInteger pgcd(BigInteger a, BigInteger b) {
 		if(b.equals(bi(0))) {
 			return a;
@@ -60,9 +83,9 @@ public class Pollard3 implements Pollard {
 			return pgcd(b,r);
 		}
 	}
-	
-	
-	
+
+
+
 	private BigInteger bi(String s) {
 		return new BigInteger(s);
 	}
