@@ -1,9 +1,7 @@
 package math;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 
@@ -11,8 +9,8 @@ public class DataMiner {
 
 	private static final int NB_ITERATIONS = 100000;
 	private static final int MAX_P_INDEX = 500;
-	private static final String ALGO = "pol3";
-	private static Pollard pol = new Pollard3();
+	private static final String ALGO = "pol1";
+	private static Pollard pol = new Pollard1();
 
 	private static long iteration = 1;
 	private static PrintWriter writer;

@@ -9,17 +9,22 @@ public class Pollard2 implements Pollard {
 	public BigInteger factorizeWith(BigInteger n, BigInteger x0) {
 		
 		// Nombres random
-		int a = ((int) Math.random() * 98 + 2);
+		BigInteger a = Numbers.rnd(n);
 		BigInteger x = x0;
 		
 		BigInteger y = x;
 		System.out.println("\n## POLLARD 2   n = "+n+"\ta = "+a+"\tx0 = "+x);
 		BigInteger pgcd;
 		while(true) {
-			x = (x.pow(2)).add(bi(a)).mod(n);
-			y = ((((y.pow(2)).add(bi(a)).mod(n)).pow(2)).add(bi(a))).mod(n);
+			x = (x.pow(2)).add(a).mod(n);
+			y = ((((y.pow(2)).add(a).mod(n)).pow(2)).add(a)).mod(n);
 			pgcd = pgcd(y.subtract(x), n);
-			if (pgcd.compareTo(bi(1)) == 0){
+			
+			if(pgcd.equals(bi(1))) {
+				throw new IllegalStateException("Illegal x value");
+			}
+			
+			if (pgcd.compareTo(bi(1)) > 0){
 				System.out.println("p = "+pgcd+"\tq = "+n.divide(pgcd));
 				return pgcd;
 			}
@@ -30,8 +35,15 @@ public class Pollard2 implements Pollard {
 	public BigInteger factorize(BigInteger n) {
 		// Generate random x0
 		BigInteger x0 = Numbers.rnd(n);
+		BigInteger p;
+		try {
+			p = this.factorizeWith(n, x0);
+		} catch (IllegalStateException e) {
+			System.out.println("# ILLEGAL X VALUE: Trying again with a different x0");
+			p = this.factorize(n);
+		}
 		
-		return this.factorizeWith(n, x0);
+		return p;
 	}
 	
 	
