@@ -54,18 +54,20 @@ public class Pollard3 implements Pollard {
 	 */
 	public PollardResult performWith(BigInteger n, BigInteger x0) {
 		BigInteger x = bi(x0.toString());
-		System.out.println("\n## POLLARD 3   n=" + n + "\tx0=" + x0);
+		//System.out.println("\n## POLLARD 3   n=" + n + "\tx0=" + x0);
 		long i = 2;
 		while(pgcd(n,x.subtract(bi(1))).equals(bi(1))) {
 			x = x.modPow(bi(i), n);
-			//System.out.println(b + "^" + i + " = " + b);
+			/*
+			System.out.println(b + "^" + i + " = " + b);
 			if(i%100000 == 0) {
 				System.out.println("# Reached i=" + i + "\tvalue=" + x);
 			}
+			*/
 			i++;
 		}
 		i--;
-		System.out.println("x^" + i + " = " + x);
+		//System.out.println("x^" + i + " = " + x);
 		BigInteger p = pgcd(n,x.subtract(bi(1)));
 		
 		if(p.equals(n)) {
@@ -73,7 +75,7 @@ public class Pollard3 implements Pollard {
 			throw new IllegalStateException("Illegal x value");
 		}
 		
-		System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
+		//System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
 		return new PollardResult(n, p, x0, x, '\0', i);
 	}
 	

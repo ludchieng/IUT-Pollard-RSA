@@ -7,10 +7,10 @@ import java.sql.Timestamp;
 
 public class DataMiner {
 
-	private static final int NB_ITERATIONS = 100000;
+	private static final int NB_ITERATIONS = 1000;
 	private static final int MAX_P_INDEX = 500;
-	private static final String ALGO = "pol1";
-	private static Pollard pol = new Pollard1();
+	private static final String ALGO = "pol2";
+	private static Pollard pol = new Pollard2();
 
 	private static long iteration = 1;
 	private static PrintWriter writer;

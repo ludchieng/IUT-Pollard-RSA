@@ -24,13 +24,17 @@ public class MainMath {
 		pol.factorize(n);
 		*/
 		
-		/*
-		//Test factorisation POLLARD 1
-		Pollard pol = new Pollard1();
-		BigInteger n = new BigInteger("9919754852093663");
+		
+		//Test factorisation POLLARD 2
+		Pollard pol = new Pollard2();
+		BigInteger n = new BigInteger("22");
 		System.out.println(n);
-		pol.factorize(n);
-		*/
+		try {
+			pol.factorizeWith(n, new BigInteger("12"));
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		}
+		
 		
 		/*
 		//Test getting prime numbers from list

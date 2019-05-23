@@ -38,7 +38,7 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-
+/*
 	@Test
 	//@Order(2)
 	void test_factorize_3_digits() {
@@ -148,7 +148,7 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-*/
+*//*
 	@Test
 	//@Order(13)
 	void test_factorize_3_digits_pb_de_ses_morts() {
@@ -158,5 +158,5 @@ public abstract class PollardTest {
 		BigInteger divider = pol.factorize(n);
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
-
+*/
 }

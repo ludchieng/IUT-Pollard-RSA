@@ -29,7 +29,7 @@ public class Pollard1 implements Pollard {
 				}
 				history.add(x);
 
-				if (pgcd.compareTo(bi(1)) > 0 ){
+				if (pgcd.compareTo(bi(1)) > 0 && !pgcd.equals(n)){
 					history = new LinkedList<>();
 
 					System.out.println("\nx-u=" + x + "-" + u + "=" + (x.subtract(u)));
@@ -70,7 +70,7 @@ public class Pollard1 implements Pollard {
 
 		BigInteger x = x0;
 		BigInteger u = x0;
-		System.out.println("\n## POLLARD 1   n=" + n + "\tx0=" + x);
+		//System.out.println("\n## POLLARD 1   n=" + n + "\tx0=" + x);
 		long i = 1;
 		while(true) {
 			for(int j=d+1; j < 2d; j++) {
@@ -87,14 +87,14 @@ public class Pollard1 implements Pollard {
 				}
 				history.add(x);
 
-				if (pgcd.compareTo(bi(1)) > 0 ){
+				if (pgcd.compareTo(bi(1)) > 0 && !pgcd.equals(n)){
 					history = new LinkedList<>();
-
+					/*
 					System.out.println("\nx-u=" + x + "-" + u + "=" + (x.subtract(u)));
 					System.out.println("pgcd(" + x.subtract(u)+","+n+")="+pgcd);
 					System.out.println("pgcd("+n+","+pgcd+")="+pgcd);
 					System.out.println("p="+pgcd+"\tq="+n.divide(pgcd));
-					
+					*/
 					return new PollardResult(n, pgcd, x0, x, '\0', i);
 				}
 				i++;
