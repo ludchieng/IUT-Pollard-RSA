@@ -9,8 +9,8 @@ public class DataMiner {
 
 	private static final int NB_ITERATIONS = 1000;
 	private static final int MAX_P_INDEX = 500;
-	private static final String ALGO = "pol2";
-	private static Pollard pol = new Pollard2();
+	private static final String ALGO = "pol3";
+	private static Pollard pol = new Pollard3();
 
 	private static long iteration = 1;
 	private static PrintWriter writer;

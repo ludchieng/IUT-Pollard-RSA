@@ -12,8 +12,13 @@ public class Pollard3 implements Pollard {
 		long i = 2;
 		while(pgcd(n,x.subtract(bi(1))).equals(bi(1))) {
 			System.out.print(x + "^" + i + " = ");
-			x = x.modPow(bi(i), n);
+			//x = x.modPow(bi(i), n);
+			BigInteger tmp = x;
+			for(long j=1; j<i; j++) {
+				x = x.multiply(tmp).mod(n);
+			}
 			System.out.println(x);
+			
 			if(i%100000 == 0) {
 				System.out.println("# Reached i=" + i + "\tvalue=" + x);
 			}

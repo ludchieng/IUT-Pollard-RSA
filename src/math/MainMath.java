@@ -26,11 +26,10 @@ public class MainMath {
 		
 		
 		//Test factorisation POLLARD 2
-		Pollard pol = new Pollard2();
+		Pollard pol = new Pollard3();
 		BigInteger n = new BigInteger("22");
-		System.out.println(n);
 		try {
-			pol.factorizeWith(n, new BigInteger("12"));
+			System.out.println("p=" + pol.factorize(n));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		}
