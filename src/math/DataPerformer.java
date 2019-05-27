@@ -15,12 +15,12 @@ import java.util.ArrayList;
 
 public class DataPerformer {
 
-	//private static final String ALGO = "pol1";
-	//private static Pollard pol = new Pollard1();
+	private static final String ALGO = "pol1";
+	private static Pollard pol = new Pollard1();
 	//private static final String ALGO = "pol2";
 	//private static Pollard pol = new Pollard2();
-	private static final String ALGO = "pol3";
-	private static Pollard pol = new Pollard3();
+	//private static final String ALGO = "pol3";
+	//private static Pollard pol = new Pollard3();
 
 	//private static final String N_LIST = "1-150";
 	private static final String N_LIST = "1-300";
