@@ -5,18 +5,14 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import math.Pollard2;
+import mathclean.Pollard;
+import mathclean.Pollard2;
 
 import java.math.BigInteger;
 
+//@TestMethodOrder(OrderAnnotation.class)
 public class Pollard2Test extends PollardTest {
-	@BeforeEach
-	void setUp() throws Exception {
-		pol = new Pollard2();
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		pol = null;
-	}
+	
+	private Pollard.algo algo = Pollard.algo.POL2;
+	
 }

@@ -7,13 +7,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.TestMethodOrder;
 
-import math.Pollard;
+import mathclean.Pollard;
 
 import java.math.BigInteger;
 
 public abstract class PollardTest {
 	
-	protected Pollard pol;
+	private Pollard.algo algo;
 	
 	private BigInteger bi(String s) {
 		return new BigInteger(s);
@@ -25,8 +25,8 @@ public abstract class PollardTest {
 	
 	@Test
 	void test_pgcd() {
-		assertEquals(bi(5),pol.pgcd(bi(15),bi(20)));
-		assertEquals(bi(1),pol.pgcd(bi(29),bi(7)));
+		assertEquals(bi(5),Pollard.pgcd(bi(15),bi(20)));
+		assertEquals(bi(1),Pollard.pgcd(bi(29),bi(7)));
 	}
 	
 	@Test
@@ -35,7 +35,7 @@ public abstract class PollardTest {
 		BigInteger n = new BigInteger("77");
 		BigInteger p = new BigInteger("11");
 		BigInteger q = new BigInteger("7");
-		BigInteger divider = pol.factorize(n);
+		BigInteger divider = Pollard.factorize(n, algo).getpBi();
 		assertTrue(divider.equals(p) || divider.equals(q));
 	}
 /*

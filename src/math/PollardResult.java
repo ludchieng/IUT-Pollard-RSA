@@ -31,8 +31,16 @@ public class PollardResult implements Serializable {
 		return n;
 	}
 
+	public int getNInt() {
+		return n.intValue();
+	}
+
 	public BigInteger getP() {
 		return p;
+	}
+
+	public int getPInt() {
+		return p.intValue();
 	}
 
 	public boolean getSuccess() {
@@ -50,8 +58,16 @@ public class PollardResult implements Serializable {
 		return x0;
 	}
 
+	public int getX0Int() {
+		return x0.intValue();
+	}
+
 	public BigInteger getXFinal() {
 		return xFinal;
+	}
+
+	public int getXFinalInt() {
+		return xFinal.intValue();
 	}
 
 	public long setNbReboot(long v) {
@@ -66,11 +82,24 @@ public class PollardResult implements Serializable {
 		return i;
 	}
 
+	public int getIInt() {
+		return (int) i;
+	}
+
 	public void setTime(long time) {
 		this.time = time;
 	}
 
 	public long getTime() {
 		return this.time;
+	}
+
+	public int getTimeInt() {
+		return (int) this.time;
+	}
+	
+	public String toString() {
+		return this.getN() + "\t" + this.getP() + "\t" + this.getSuccess() + "\t" + 
+				this.getX0() + "\t" + this.getXFinal() + "\t" + this.getNbReboot() + "\t" + this.getI() + "\t" + this.getTime()/1000;
 	}
 }

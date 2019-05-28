@@ -7,19 +7,14 @@ import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.TestMethodOrder;
 //import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
-import math.Pollard3;
+import mathclean.Pollard;
+import mathclean.Pollard3;
 
 import java.math.BigInteger;
 
 //@TestMethodOrder(OrderAnnotation.class)
 public class Pollard3Test extends PollardTest {
-	@BeforeEach
-	void setUp() throws Exception {
-		pol = new Pollard3();
-	}
-
-	@AfterEach
-	void tearDown() throws Exception {
-		pol = null;
-	}
+	
+	private Pollard.algo algo = Pollard.algo.POL3;
+	
 }

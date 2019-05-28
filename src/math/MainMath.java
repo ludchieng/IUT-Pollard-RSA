@@ -2,10 +2,11 @@ package math;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MainMath {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		/*
 		//Test factorisation saisie
 		Scanner sc = new Scanner(System.in);
@@ -24,7 +25,7 @@ public class MainMath {
 		pol.factorize(n);
 		*/
 		
-		
+		/*
 		//Test factorisation POLLARD 2
 		Pollard pol = new Pollard3();
 		BigInteger n = new BigInteger("22");
@@ -32,7 +33,7 @@ public class MainMath {
 			System.out.println("p=" + pol.factorize(n));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		/*
@@ -57,5 +58,10 @@ public class MainMath {
 			System.out.println(Numbers.rnd(new BigInteger("1000")));
 		}
 		*/
+		
+		ArrayList<PollardResult> l = DataPerformer.load("./log-1-300-pol3-ludch-2");
+		for(PollardResult p : l) {
+			System.out.println(p);
+		}
 	}
 }

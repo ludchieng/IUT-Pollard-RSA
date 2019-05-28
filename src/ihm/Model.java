@@ -1,5 +1,5 @@
 package ihm;
-import math.*;
+import mathclean.*;
 import javax.swing.*;
 import java.awt.*;
 import java.math.BigInteger;
@@ -17,15 +17,15 @@ public class Model {
 	}
 	
 	public BigInteger factorizeP1(BigInteger bi, BigInteger x0) {
-		return p1.factorizeWith(bi, x0);
+		return p1.factorizeWithX0(bi, x0).getpBi();
 	}
 	
 	public BigInteger factorizeP2(BigInteger bi, BigInteger x0) {
-		return p2.factorizeWith(bi, x0);
+		return p2.factorizeWithX0(bi, x0).getpBi();
 	}
 	
 	public BigInteger factorizeP3(BigInteger bi, BigInteger x0) {
-		return p3.factorizeWith(bi, x0);
+		return p3.factorizeWithX0(bi, x0).getpBi();
 	}
 	
 }
