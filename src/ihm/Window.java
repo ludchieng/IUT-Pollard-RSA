@@ -7,7 +7,7 @@ public class Window extends JFrame {
 	
 	public Window() {
 		this.add(new View());
-		this.setPreferredSize(new Dimension(500, 380));
+		this.setPreferredSize(new Dimension(500, 420));
 		this.pack();
 		this.setVisible(true);
 	}

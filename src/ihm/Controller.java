@@ -30,27 +30,28 @@ public class Controller implements ActionListener {
 				BigInteger n = new BigInteger(v.getTxtfN());
 				for(Pollard.algo algo : Pollard.algo.values()) {
 					PollardPanel pan = v.getPolPan(algo);
-					
-					PollardResult polRes = compute(algo, pan, n);
-					int nbReboot = 0;
-					int time = polRes.getTime();
-					while(!polRes.isSuccess()) {
-						polRes = compute(algo, pan, n);
-						nbReboot++;
-						time += polRes.getTime();
+					if(pan.isChecked()) {
+						PollardResult polRes = compute(algo, pan, n);
+						int nbReboot = 0;
+						int time = polRes.getTime();
+						while(!polRes.isSuccess()) {
+							polRes = compute(algo, pan, n);
+							nbReboot++;
+							time += polRes.getTime();
+						}
+						polRes.setNbReboot(nbReboot);
+						polRes.setTime(time);
+						
+						PollardPanel polPan = v.getPolPan(algo);
+						polPan.setP(polRes.getpBi());
+						polPan.setTime(polRes.getTime());
+						polPan.setX0(polRes.getX0Bi());
+						if(algo == Pollard.algo.POL2) {
+							polPan.setA(polRes.getaBi());
+						}
+						polPan.setI(polRes.getI());
+						polPan.setNbReboot(polRes.getNbReboot());
 					}
-					polRes.setNbReboot(nbReboot);
-					polRes.setTime(time);
-					
-					PollardPanel polPan = v.getPolPan(algo);
-					polPan.setP(polRes.getpBi());
-					polPan.setTime(polRes.getTime());
-					polPan.setX0(polRes.getX0Bi());
-					if(algo == Pollard.algo.POL2) {
-						polPan.setA(polRes.getaBi());
-					}
-					polPan.setI(polRes.getI());
-					polPan.setNbReboot(polRes.getNbReboot());
 				}
 			}
 		}

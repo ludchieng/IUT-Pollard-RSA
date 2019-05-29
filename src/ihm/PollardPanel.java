@@ -12,6 +12,7 @@ public class PollardPanel extends JPanel {
 
 	private Pollard.algo algo;
 	
+	private JCheckBox chk;
 	private JTextField x0Input;
 	private JTextField aInput;
 	private JTextField iInput;
@@ -25,6 +26,7 @@ public class PollardPanel extends JPanel {
 	
 	
 	public PollardPanel(Pollard.algo algo) {
+		chk = new JCheckBox("", true);
 		x0Input = new JTextField();
 		aInput = new JTextField();
 		iInput = new JTextField();
@@ -45,6 +47,10 @@ public class PollardPanel extends JPanel {
 		initPanel();
 	}
 
+	
+	public boolean isChecked() {
+		return chk.isSelected();
+	}
 	
 	public boolean isFilledX0() {
 		return !x0Input.getText().equals("");
@@ -134,13 +140,16 @@ public class PollardPanel extends JPanel {
 		nbReboot.setEditable(false);
 		
 		JPanel pan = new JPanel();
-		pan.setLayout(new GridLayout(9,2));
+		pan.setLayout(new GridLayout(10,2));
+		pan.add(new JLabel(Pollard.algoToDisplay(algo), SwingConstants.RIGHT));
+		pan.add(chk);
 		pan.add(new JLabel("x0 ", SwingConstants.RIGHT));
 		pan.add(x0Input);
 		pan.add(createALabel());
 		pan.add(aInput);
-		pan.add(new JLabel("i ", SwingConstants.RIGHT));
+		pan.add(new JLabel(""/*"i"*/, SwingConstants.RIGHT));
 		pan.add(iInput);
+		iInput.setVisible(false);
 		pan.add(new JLabel("p ", SwingConstants.RIGHT));
 		pan.add(p);
 		pan.add(new JLabel("time (µs) ", SwingConstants.RIGHT));
