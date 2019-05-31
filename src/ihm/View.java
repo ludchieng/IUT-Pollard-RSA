@@ -6,6 +6,7 @@ import java.awt.*;
 public class View extends JPanel {
 	
 	private JTextField txtfN;
+	private JSpinner nbDigitsN;
 	private PollardPanel[] panPol;
 	
 	public View() {
@@ -14,6 +15,10 @@ public class View extends JPanel {
 	
 	public void setTxtfN(String s) {
 		this.txtfN.setText(s);
+	}
+	
+	public int getNbDigitN() {
+		return Integer.parseInt(nbDigitsN.getValue().toString());
 	}
 	
 	public String getTxtfN() {
@@ -41,8 +46,11 @@ public class View extends JPanel {
 		
 		
 		JPanel panNField = new JPanel();
-		panNField.setLayout(new GridLayout(1,2));
+		panNField.setLayout(new GridLayout(1,3));
 		panNField.add(new JLabel("Entrez n:"));
+		SpinnerNumberModel nbDigitsNModel = new SpinnerNumberModel(8,2,13,1);
+		nbDigitsN = new JSpinner(nbDigitsNModel);
+		panNField.add(nbDigitsN);
 		panNField.add(btnGenerateN);
 		
 		JPanel panN = new JPanel();
