@@ -99,7 +99,7 @@ public class PollardResult implements Serializable {
 	}
 	
 	public String toString() {
-		return this.getN() + "\t" + this.getP() + "\t" + this.getSuccess() + "\t" + 
-				this.getX0() + "\t" + this.getXFinal() + "\t" + this.getNbReboot() + "\t" + this.getI() + "\t" + this.getTime()/1000;
+		return getN() + "\t" + getP() + "\t" + getSuccess() + "\t" + 
+				getX0() + "\t" + getXFinal() + "\t" + getNbReboot() + "\t" + getI() + "\t" + getTime()/1000;
 	}
 }

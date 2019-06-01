@@ -41,6 +41,7 @@ public class Controller implements ActionListener {
 						}
 						polPan.setI(polRes.getI());
 						polPan.setNbReboot(polRes.getNbReboot());
+						polPan.updateAvg(polRes.getTime(), polRes.getI());
 					}
 				}
 			}

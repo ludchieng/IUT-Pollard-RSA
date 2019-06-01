@@ -14,16 +14,9 @@ public class PollardResult {
 	private int nbReboot;
 	private int i;
 	private int time;
-
-	private int n;
-	private int p;
-	private int a;
-	private int x0;
-	private int xFinal;
 	
 	public PollardResult(Pollard.algo algo, BigInteger nBi, BigInteger pBi, boolean success, BigInteger aBi, BigInteger x0Bi,
 			BigInteger xFinalBi, int nbReboot, int i, int time) {
-		super();
 		this.algo = algo;
 		this.nBi = nBi;
 		this.pBi = pBi;
@@ -50,11 +43,6 @@ public class PollardResult {
 
 	public void setnBi(BigInteger nBi) {
 		this.nBi = nBi;
-		if(nBi.compareTo(new BigInteger(Integer.toString(Integer.MAX_VALUE))) > 0) {
-			this.n = -1;
-		} else {
-			this.n = nBi.intValue();
-		}
 	}
 
 	public BigInteger getpBi() {
@@ -63,11 +51,6 @@ public class PollardResult {
 
 	public void setpBi(BigInteger pBi) {
 		this.pBi = pBi;
-		if(pBi.compareTo(new BigInteger(Integer.toString(Integer.MAX_VALUE))) > 0) {
-			this.p = -1;
-		} else {
-			this.p = pBi.intValue();
-		}
 	}
 
 	public boolean isSuccess() {
@@ -84,11 +67,6 @@ public class PollardResult {
 
 	public void setaBi(BigInteger aBi) {
 		this.aBi = aBi;
-		if(aBi.compareTo(new BigInteger(Integer.toString(Integer.MAX_VALUE))) > 0) {
-			this.a = -1;
-		} else {
-			this.a = aBi.intValue();
-		}
 	}
 
 	public BigInteger getX0Bi() {
@@ -97,11 +75,6 @@ public class PollardResult {
 
 	public void setX0Bi(BigInteger x0Bi) {
 		this.x0Bi = x0Bi;
-		if(x0Bi.compareTo(new BigInteger(Integer.toString(Integer.MAX_VALUE))) > 0) {
-			this.x0 = -1;
-		} else {
-			this.x0 = x0Bi.intValue();
-		}
 	}
 
 	public BigInteger getxFinalBi() {
@@ -110,11 +83,6 @@ public class PollardResult {
 
 	public void setxFinalBi(BigInteger xFinalBi) {
 		this.xFinalBi = xFinalBi;
-		if(xFinalBi.compareTo(new BigInteger(Integer.toString(Integer.MAX_VALUE))) > 0) {
-			this.xFinal = -1;
-		} else {
-			this.xFinal = xFinalBi.intValue();
-		}
 	}
 
 	public int getNbReboot() {
@@ -142,40 +110,40 @@ public class PollardResult {
 	}
 
 	public int getN() {
-		/*if(n == -1) {
-			throw new IllegalStateException("Out of range number");
-		}*/
-		return n;
+		return toInt(nBi);
 	}
 
 	public int getP() {
-		/*if(p == -1) {
-			throw new IllegalStateException("Out of range number");
-		}*/
-		return p;
+		return toInt(pBi);
 	}
 
 	public int getA() {
-		/*if(a == -1) {
-			throw new IllegalStateException("Out of range number");
-		}*/
-		return a;
+		return toInt(aBi);
 	}
 
 	public int getX0() {
-		/*if(x0 == -1) {
-			throw new IllegalStateException("Out of range number");
-		}*/
-		return x0;
+		return toInt(x0Bi);
 	}
 
 	public int getxFinal() {
-		/*if(xFinal == -1) {
-			throw new IllegalStateException("Out of range number");
-		}*/
-		return xFinal;
+		return toInt(xFinalBi);
 	}
 	
+	private int toInt(BigInteger bi) {
+		if(bi == null) {
+			throw new NullPointerException("Expected BigInteger but was null");
+		}
+		if(bi.compareTo(new BigInteger(Integer.toString(Integer.MAX_VALUE))) > 0) {
+			throw new IllegalArgumentException("Cannot cast safely BigInteger into int");
+		}
+		return bi.intValue();
+	}
 	
+	public String toString() {
+		return getnBi() + "\t" + getpBi() + "\t"
+				+ isSuccess() + "\t" + getX0Bi() + "\t"
+				+ getxFinalBi() + "\t" + getNbReboot() + "\t"
+				+ getI()+ "\t"	+ getTime();
+	}
 
 }

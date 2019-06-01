@@ -6,6 +6,8 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.math.BigInteger;
 
 public class PollardPanel extends JPanel {
@@ -24,6 +26,11 @@ public class PollardPanel extends JPanel {
 	private JTextField i;
 	private JTextField nbReboot;
 	
+	private int nbAvg;
+	private JButton resetAvg;
+	private JTextField timeAvg;
+	private JTextField iAvg;
+	
 	
 	public PollardPanel(Pollard.algo algo) {
 		chk = new JCheckBox("", true);
@@ -36,6 +43,11 @@ public class PollardPanel extends JPanel {
 		a = new JTextField();
 		i = new JTextField();
 		nbReboot = new JTextField();
+
+		nbAvg = 0;
+		resetAvg = new JButton("Reset moy");
+		timeAvg = new JTextField("0");
+		iAvg = new JTextField("0");
 		
 		this.algo = algo;
 		
@@ -76,9 +88,24 @@ public class PollardPanel extends JPanel {
 	public BigInteger getA() {
 		return new BigInteger(aInput.getText());
 	}
-	
+
 	public int getI() {
 		return Integer.parseInt(iInput.getText());
+	}
+	
+
+	
+	
+	public int getTime() {
+		return Integer.parseInt(time.getText());
+	}
+	
+	public int getTimeAvg() {
+		return Integer.parseInt(timeAvg.getText());
+	}
+
+	public int getIAvg() {
+		return Integer.parseInt(iAvg.getText());
 	}
 
 
@@ -88,9 +115,13 @@ public class PollardPanel extends JPanel {
 	public void setP(String p) {
 		this.p.setText(p);
 	}
-	
+
 	public void setTime(int time) {
 		this.time.setText(Integer.toString(time));
+	}
+	
+	public void setTimeAvg(int time) {
+		this.timeAvg.setText(Integer.toString(time));
 	}
 
 	public void setX0(BigInteger x0) {
@@ -111,8 +142,27 @@ public class PollardPanel extends JPanel {
 		this.i.setText(Integer.toString(i));
 	}
 	
+	public void setIAvg(int i) {
+		this.iAvg.setText(Integer.toString(i));
+	}
+	
 	public void setNbReboot(int nbR) {
 		this.nbReboot.setText(Integer.toString(nbR));
+	}
+	
+	
+	public void updateAvg(int time, int i) {
+		int timeAvg = getTimeAvg();
+		int iAvg = getIAvg();
+		timeAvg *= nbAvg;
+		iAvg *= nbAvg;
+		timeAvg += time;
+		iAvg += i;
+		nbAvg++;
+		timeAvg /= nbAvg;
+		iAvg /= nbAvg;
+		setTimeAvg(timeAvg);
+		setIAvg(iAvg);
 	}
 	
 	
@@ -139,29 +189,56 @@ public class PollardPanel extends JPanel {
 		i.setEditable(false);
 		nbReboot.setEditable(false);
 		
+		AvgController cntrlAvg = new AvgController();
+		resetAvg.addActionListener(cntrlAvg);
+		timeAvg.setBorder(new CompoundBorder(marg, bord));
+		iAvg.setBorder(new CompoundBorder(marg, bord));
+		timeAvg.setEditable(false);
+		iAvg.setEditable(false);
+		
 		JPanel pan = new JPanel();
-		pan.setLayout(new GridLayout(10,2));
+		pan.setLayout(new GridLayout(10,3));
+		
 		pan.add(new JLabel(Pollard.algoToDisplay(algo), SwingConstants.RIGHT));
 		pan.add(chk);
+		pan.add(new JLabel(""));
+		
 		pan.add(new JLabel("x0 ", SwingConstants.RIGHT));
 		pan.add(x0Input);
+		pan.add(new JLabel(""));
+		
 		pan.add(createALabel());
 		pan.add(aInput);
+		pan.add(new JLabel(""));
+		
 		pan.add(new JLabel(""/*"i"*/, SwingConstants.RIGHT));
 		pan.add(iInput);
 		iInput.setVisible(false);
+		pan.add(resetAvg);
+		
 		pan.add(new JLabel("p ", SwingConstants.RIGHT));
 		pan.add(p);
+		pan.add(new JLabel(""));
+		
 		pan.add(new JLabel("time (µs) ", SwingConstants.RIGHT));
 		pan.add(time);
+		pan.add(timeAvg);
+		
 		pan.add(new JLabel("x0 ", SwingConstants.RIGHT));
 		pan.add(x0);
+		pan.add(new JLabel(""));
+		
 		pan.add(createALabel());
 		pan.add(a);
+		pan.add(new JLabel(""));
+		
 		pan.add(new JLabel("i ", SwingConstants.RIGHT));
 		pan.add(i);
+		pan.add(iAvg);
+		
 		pan.add(new JLabel("Nb Reboot ", SwingConstants.RIGHT));
 		pan.add(nbReboot);
+		pan.add(new JLabel(""));
 		
 		this.add(pan, BorderLayout.SOUTH);
 	}
@@ -172,6 +249,20 @@ public class PollardPanel extends JPanel {
 		} else {
 			return new JLabel("");
 		}
+	}
+	
+	private class AvgController implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JButton src = (JButton) e.getSource();
+			if(src == resetAvg) {
+				nbAvg = 0;
+				setTimeAvg(0);
+				setIAvg(0);
+			}
+		}
+		
 	}
 	
 }
