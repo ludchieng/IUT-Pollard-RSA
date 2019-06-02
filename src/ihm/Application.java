@@ -1,7 +1,7 @@
 package ihm;
 
-public class Main {
+public class Application {
 	public static void main(String[] a) {
-		new ihm.Window();
+		new Window();
 	}
 }
