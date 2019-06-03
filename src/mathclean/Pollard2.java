@@ -22,7 +22,7 @@ public class Pollard2 extends Pollard {
 	}
 	
 	public static PollardResult factorizeWithX0AndAFromI(BigInteger n, BigInteger x0, BigInteger a, int i) {
-		System.out.println("\n## POLLARD 2   n = "+n+"\tx0 = "+x0+"\ta = "+a);
+		System.out.println("\n## POLLARD 2   n="+n+"\tx0="+x0+"\ta="+a);
 		
 		long timeBegin = System.nanoTime();
 		
@@ -31,15 +31,22 @@ public class Pollard2 extends Pollard {
 		BigInteger p;
 		
 		while(true) {
+			//System.out.print(x);
 			x = (x.pow(2)).add(a).mod(n);
+			//System.out.println("^2+a=" + x);
+
+			//System.out.print("("+y);
 			y = ((((y.pow(2)).add(a).mod(n)).pow(2)).add(a)).mod(n);
+			//System.out.println("^2+a)^2+a=" + y);
+			
 			p = pgcd(y.subtract(x), n);
+			//System.out.println("pgcd(" + n + "," + y.subtract(x).mod(n) + ")=" + p);
 			
 			if (p.compareTo(bi(1)) > 0){
 				long timeEnd = System.nanoTime();
 				int time = (int) ((timeEnd - timeBegin)/1000);
-				
-				System.out.println("p = " + p);
+
+				System.out.println("pgcd(" + n + "," + y + "-" + x + ")=" + p);
 				
 				return new PollardResult(algo, n, p, checkP(n,p), a, x0, x, -1, i, time);
 			}

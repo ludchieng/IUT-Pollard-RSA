@@ -44,21 +44,21 @@ public class Numbers {
 	
 	
 	
-	private static final int MAX_INDEX_PRIME = 50008;
+	private static final int MAX_INDEX_PRIME = 100000;
 	//private static final String N_LIST_PATH = "./n_list_1-" + MAX_INDEX_PRIME + ".txt";
-	private static final String N_LIST_PATH = "./n_list.txt";
+	private static final String N_LIST_PATH = ""/* "./n_list_distrib.txt"*/;
 	/**
 	 * Generate list of n=p*q numbers as a txt file
 	 * @param a
 	 * @throws IOException
 	 */
-	/*public static void main(String[] a) throws IOException {
+	public static void main(String[] a) throws IOException {
 		System.out.println("## GENERATE N LIST");
 		HashSet<BigInteger> nSet = new HashSet<>();
 		
 		// Generate n values
 		System.out.println("## Generating n values");
-		for(int i=0; i<5000; i++) {
+		for(int i=0; i<200; i++) {
 			BigInteger p;
 			BigInteger q;
 			BigInteger n;
@@ -69,11 +69,11 @@ public class Numbers {
 					q = getPrimeRndUpTo(MAX_INDEX_PRIME-1);
 				} while (q.equals(p));
 				n = p.multiply(q);
-			} while(nSet.contains(n));
+			} while(nSet.contains(n) /*|| n.toString().length() != 14*/);
 			
 			nSet.add(n);
 			
-			if(i%500 == 0) {
+			if(i%10 == 0) {
 				System.out.println("# reached i="+i);
 			}
 		}
@@ -101,7 +101,7 @@ public class Numbers {
 		w.close();
 		
 		System.out.println("## END - Added " + (nValues.size() - nbLinesBefore) + " lines");
-	}*/
+	}
 	
 	
 	

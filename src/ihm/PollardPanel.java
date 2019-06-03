@@ -51,7 +51,7 @@ public class PollardPanel extends JPanel {
 		
 		this.algo = algo;
 		
-		if(this.algo != Pollard.algo.POL2) {
+		if(this.algo == Pollard.algo.POL3) {
 			this.aInput.setVisible(false);
 			this.a.setVisible(false);
 		}
@@ -244,10 +244,10 @@ public class PollardPanel extends JPanel {
 	}
 	
 	private JLabel createALabel() {
-		if(this.algo == Pollard.algo.POL2) {
-			return new JLabel("a", SwingConstants.RIGHT);
-		} else {
+		if(this.algo == Pollard.algo.POL3) {
 			return new JLabel("");
+		} else {
+			return new JLabel("a", SwingConstants.RIGHT);
 		}
 	}
 	

@@ -25,25 +25,22 @@ public class Pollard3 extends Pollard {
 		BigInteger x = bi(x0);
 		BigInteger p;
 		
-		while(pgcd(n,x.subtract(bi(1))).equals(bi(1))) {
-			//System.out.print(x + "^" + i + " = ");
+		while(true) {
+			//System.out.print(x);
 			x = x.modPow(bi(i), n);
-			//System.out.println(x);
+			//System.out.println("^" + i + " = " + x);
+			p = pgcd(n,x.subtract(bi(1)));
+			//System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
 			
-			/*if(i%100000 == 0) {
-				System.out.println("# Reached i=" + i + "\tvalue=" + x);
-			}*/
+			if(p.compareTo(bi(1)) > 0 && !p.equals(bi(1))) {
+				long timeEnd = System.nanoTime();
+				int time = (int) ((timeEnd - timeBegin)/1000);
+				System.out.println("x^" + i + " = " + x);
+				System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
+				return new PollardResult(algo, n, p, checkP(n,p), null, x0, x, -1, i, time);
+			}
 			i++;
 		}
-		p = pgcd(n,x.subtract(bi(1)));
-		long timeEnd = System.nanoTime();
-		int time = (int) ((timeEnd - timeBegin)/1000);
-		
-		i--;
-		System.out.println("x^" + i + " = " + x);
-		System.out.println("pgcd(" + n + "," + (x.subtract(bi(1))) + ") = " + p);
-		
-		return new PollardResult(algo, n, p, checkP(n,p), null, x0, x, -1, i, time);
 	}
 
 }

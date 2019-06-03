@@ -11,7 +11,7 @@ public class X0Test {
 	
 	public static void main(String[] args) throws Exception {
 		System.out.println("#### X0 TEST");
-		BigInteger n = new BigInteger("97837");
+		BigInteger n = new BigInteger("3921");
 		HashSet<BigInteger> x0s = new HashSet<>();
 		LinkedList<PollardResult> polRes = new LinkedList<>();
 		long moy = 0;
@@ -36,7 +36,7 @@ public class X0Test {
 
 		System.out.println("## Printing out results");
 		PrintWriter out = new PrintWriter("./log-x0test.txt");
-		out.print("Moyenne = " + moy);
+		out.println("Moyenne = " + moy);
 		
 		for(PollardResult p : polRes) {
 			out.println(p);

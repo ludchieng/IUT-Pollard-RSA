@@ -3,7 +3,7 @@ import mathclean.*;
 import javax.swing.*;
 import java.awt.*;
 import java.math.BigInteger;
-
+//
 public class Model {
 
 	private Pollard1 p1;
@@ -46,12 +46,18 @@ public class Model {
 		PollardResult polRes = null;
 		switch(algo) {
 		case POL1:
-			if(pan.isFilledX0() && pan.isFilledI()) {
-				polRes = Pollard1.factorizeWithX0FromI(n, pan.getX0(), pan.getI());
-			} else if (pan.isFilledX0()) {
-				polRes = Pollard1.factorizeWithX0(n, pan.getX0());
+			if(pan.isFilledX0() && pan.isFilledA()) {
+				if(pan.isFilledI()) {
+					polRes = Pollard1.factorizeWithX0AndAFromI(n, pan.getX0(), pan.getA(), pan.getI());
+				} else {
+					polRes = Pollard1.factorizeWithX0AndA(n, pan.getX0(), pan.getA());
+				}
 			} else {
-				polRes = Pollard1.factorize(n);
+				if(pan.isFilledX0()) {
+					polRes = Pollard1.factorizeWithX0(n, pan.getX0());
+				} else {
+					polRes = Pollard1.factorize(n);
+				}
 			}
 			break;
 		case POL2:

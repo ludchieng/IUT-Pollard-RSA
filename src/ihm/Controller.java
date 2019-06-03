@@ -36,7 +36,7 @@ public class Controller implements ActionListener {
 						polPan.setP(polRes.getpBi());
 						polPan.setTime(polRes.getTime());
 						polPan.setX0(polRes.getX0Bi());
-						if(algo == Pollard.algo.POL2) {
+						if(algo != Pollard.algo.POL3) {
 							polPan.setA(polRes.getaBi());
 						}
 						polPan.setI(polRes.getI());
