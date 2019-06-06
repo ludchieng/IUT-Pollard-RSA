@@ -39,7 +39,7 @@ public class Controller implements ActionListener {
 						if(algo != Pollard.algo.POL3) {
 							polPan.setA(polRes.getaBi());
 						}
-						polPan.setI(polRes.getI());
+						polPan.setQ(polRes.getnBi().divide(polRes.getpBi()));
 						polPan.setNbReboot(polRes.getNbReboot());
 						polPan.updateAvg(polRes.getTime(), polRes.getI());
 					}

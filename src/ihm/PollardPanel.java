@@ -20,6 +20,7 @@ public class PollardPanel extends JPanel {
 	private JTextField iInput;
 
 	private JTextField p;
+	private JTextField q;
 	private JTextField time;
 	private JTextField x0;
 	private JTextField a;
@@ -38,6 +39,7 @@ public class PollardPanel extends JPanel {
 		aInput = new JTextField();
 		iInput = new JTextField();
 		p = new JTextField();
+		q = new JTextField();
 		time = new JTextField();
 		x0 = new JTextField();
 		a = new JTextField();
@@ -137,6 +139,13 @@ public class PollardPanel extends JPanel {
 	public void setA(String a) {
 		this.a.setText(a);
 	}
+
+	public void setQ(BigInteger q) {
+		this.q.setText(q.toString());
+	}
+	public void setQ(String q) {
+		this.q.setText(q);
+	}
 	
 	public void setI(int i) {
 		this.i.setText(Integer.toString(i));
@@ -176,6 +185,7 @@ public class PollardPanel extends JPanel {
 		aInput.setBorder(new CompoundBorder(marg, bord));
 		iInput.setBorder(new CompoundBorder(marg, bord));
 		p.setBorder(new CompoundBorder(marg, bord));
+		q.setBorder(new CompoundBorder(marg, bord));
 		time.setBorder(new CompoundBorder(marg, bord));
 		x0.setBorder(new CompoundBorder(marg, bord));
 		a.setBorder(new CompoundBorder(marg, bord));
@@ -183,6 +193,7 @@ public class PollardPanel extends JPanel {
 		nbReboot.setBorder(new CompoundBorder(marg, bord));
 
 		p.setEditable(false);
+		q.setEditable(false);
 		time.setEditable(false);
 		x0.setEditable(false);
 		a.setEditable(false);
@@ -197,7 +208,7 @@ public class PollardPanel extends JPanel {
 		iAvg.setEditable(false);
 		
 		JPanel pan = new JPanel();
-		pan.setLayout(new GridLayout(10,3));
+		pan.setLayout(new GridLayout(11,3));
 		
 		pan.add(new JLabel(Pollard.algoToDisplay(algo), SwingConstants.RIGHT));
 		pan.add(chk);
@@ -218,6 +229,10 @@ public class PollardPanel extends JPanel {
 		
 		pan.add(new JLabel("p ", SwingConstants.RIGHT));
 		pan.add(p);
+		pan.add(new JLabel(""));
+
+		pan.add(new JLabel("q ", SwingConstants.RIGHT));
+		pan.add(q);
 		pan.add(new JLabel(""));
 		
 		pan.add(new JLabel("time (µs) ", SwingConstants.RIGHT));
