@@ -1,4 +1,4 @@
-package mathclean;
+package pollard;
 
 import java.math.BigInteger;
 import java.util.HashSet;
@@ -8,22 +8,22 @@ public class Pollard1 extends Pollard {
 	public static Pollard.algo algo = Pollard.algo.POL1;
 
 	
-	public static PollardResult factorize(BigInteger n) {
-		return factorizeWithX0(n, Numbers.rnd(n));
+	public static PollardResult factor(BigInteger n) {
+		return factorWithX0(n, Numbers.rnd(n));
 	}
 
 	
-	public static PollardResult factorizeWithX0(BigInteger n, BigInteger x0) {
-		return factorizeWithX0AndA(n, x0, Numbers.rnd(n));
+	public static PollardResult factorWithX0(BigInteger n, BigInteger x0) {
+		return factorWithX0AndA(n, x0, Numbers.rnd(n));
 	}
 
 	
-	public static PollardResult factorizeWithX0AndA(BigInteger n, BigInteger x0, BigInteger a) {
-		return factorizeWithX0AndAFromI(n, x0, a, 1);
+	public static PollardResult factorWithX0AndA(BigInteger n, BigInteger x0, BigInteger a) {
+		return factorWithX0AndAFromI(n, x0, a, 1);
 	}
 
 	
-	public static PollardResult factorizeWithX0AndAFromI(BigInteger n, BigInteger x0, BigInteger a, int i) {
+	public static PollardResult factorWithX0AndAFromI(BigInteger n, BigInteger x0, BigInteger a, int i) {
 		System.out.println("\n## POLLARD 1   n=" + n + "\tx0=" + x0 + "\ta=" + a);
 
 		long timeBegin = System.nanoTime();
@@ -42,8 +42,8 @@ public class Pollard1 extends Pollard {
 				x = x.modPow(bi(2), n).add(a).mod(n);
 				//System.out.println("^2+" + a + "=" + x);
 
-				p = pgcd(x.subtract(u).mod(n), n);
-				//System.out.println("pgcd(" + n +","+ x.subtract(u).mod(n) +")="+p);
+				p = gcd(x.subtract(u).mod(n), n);
+				//System.out.println("gcd(" + n +","+ x.subtract(u).mod(n) +")="+p);
 				
 				if(!history.add(x)) {
 					long timeEnd = System.nanoTime();
@@ -58,7 +58,7 @@ public class Pollard1 extends Pollard {
 					int time = (int) ((timeEnd - timeBegin)/1000);
 					
 					System.out.println("\nx-u=" + x + "-" + u + "=" + (x.subtract(u).mod(n)));
-					System.out.println("pgcd(" + n +","+ x.subtract(u).mod(n) +")="+p);
+					System.out.println("gcd(" + n +","+ x.subtract(u).mod(n) +")="+p);
 					System.out.println("p="+p+"\tq="+n.divide(p));
 					
 					return new PollardResult(algo, n, p, checkP(n,p), a, x0, x, -1, i, time);

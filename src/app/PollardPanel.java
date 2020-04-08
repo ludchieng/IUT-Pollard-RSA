@@ -1,5 +1,5 @@
-package ihm;
-import mathclean.Pollard;
+package app;
+import pollard.Pollard;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -11,6 +11,8 @@ import java.awt.event.ActionListener;
 import java.math.BigInteger;
 
 public class PollardPanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	private Pollard.algo algo;
 	
@@ -47,7 +49,7 @@ public class PollardPanel extends JPanel {
 		nbReboot = new JTextField();
 
 		nbAvg = 0;
-		resetAvg = new JButton("Reset moy");
+		resetAvg = new JButton("Reset avg");
 		timeAvg = new JTextField("0");
 		iAvg = new JTextField("0");
 		
@@ -251,7 +253,7 @@ public class PollardPanel extends JPanel {
 		pan.add(i);
 		pan.add(iAvg);
 		
-		pan.add(new JLabel("Nb Reboot ", SwingConstants.RIGHT));
+		pan.add(new JLabel("Reboots count", SwingConstants.RIGHT));
 		pan.add(nbReboot);
 		pan.add(new JLabel(""));
 		

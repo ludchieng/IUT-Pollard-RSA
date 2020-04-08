@@ -1,7 +1,6 @@
-package ihm;
-import mathclean.*;
+package app;
+import pollard.*;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,20 +11,20 @@ public class Controller implements ActionListener {
 	private View v;
 	private Model m;
 
-	private JButton btnFactorize;
+	private JButton btnfactor;
 	private JButton btnGenerateN;
 	
-	public Controller(View v, JButton btnFactorize, JButton btnGenerateN) {
+	public Controller(View v, JButton btnfactor, JButton btnGenerateN) {
 		this.v = v;
 		this.m = new Model();
-		this.btnFactorize = btnFactorize;
+		this.btnfactor = btnfactor;
 		this.btnGenerateN = btnGenerateN;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		JButton src = (JButton)arg0.getSource();
-		if(src == btnFactorize) {
+		if(src == btnfactor) {
 			if(!v.getTxtfN().isEmpty()) {
 				BigInteger n = new BigInteger(v.getTxtfN());
 				for(Pollard.algo algo : Pollard.algo.values()) {
@@ -40,6 +39,7 @@ public class Controller implements ActionListener {
 							polPan.setA(polRes.getaBi());
 						}
 						polPan.setQ(polRes.getnBi().divide(polRes.getpBi()));
+						polPan.setI(polRes.getI());
 						polPan.setNbReboot(polRes.getNbReboot());
 						polPan.updateAvg(polRes.getTime(), polRes.getI());
 					}

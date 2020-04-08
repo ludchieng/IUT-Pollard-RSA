@@ -1,4 +1,4 @@
-package mathclean;
+package pollard;
 
 import java.math.BigInteger;
 

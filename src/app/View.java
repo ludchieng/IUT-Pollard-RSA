@@ -1,9 +1,11 @@
-package ihm;
-import mathclean.*;
+package app;
+import pollard.*;
 import javax.swing.*;
 import java.awt.*;
 
 public class View extends JPanel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private JTextField txtfN;
 	private JSpinner nbDigitsN;
@@ -38,16 +40,16 @@ public class View extends JPanel {
 		this.setLayout(new BorderLayout());
 		
 		txtfN = new JTextField();
-		JButton btnFactorize = new JButton("Factoriser");
-		JButton btnGenerateN = new JButton("Générer n");
-		Controller cntrl = new Controller(this, btnFactorize, btnGenerateN);
-		btnFactorize.addActionListener(cntrl);
+		JButton btnfactor = new JButton("Factor");
+		JButton btnGenerateN = new JButton("Get n value");
+		Controller cntrl = new Controller(this, btnfactor, btnGenerateN);
+		btnfactor.addActionListener(cntrl);
 		btnGenerateN.addActionListener(cntrl);
 		
 		
 		JPanel panNField = new JPanel();
 		panNField.setLayout(new GridLayout(1,3));
-		panNField.add(new JLabel("Entrez n:"));
+		panNField.add(new JLabel("Input n:"));
 		SpinnerNumberModel nbDigitsNModel = new SpinnerNumberModel(8,2,13,1);
 		nbDigitsN = new JSpinner(nbDigitsNModel);
 		panNField.add(nbDigitsN);
@@ -58,11 +60,11 @@ public class View extends JPanel {
 		panN.add(panNField);
 		panN.add(txtfN);
 		
-		JPanel panFactorize = new JPanel();
-		panFactorize.setLayout(new GridLayout(1,2));
-		panFactorize.add(panN);
-		panFactorize.add(btnFactorize);
-		this.add(panFactorize, BorderLayout.NORTH);
+		JPanel panfactor = new JPanel();
+		panfactor.setLayout(new GridLayout(1,2));
+		panfactor.add(panN);
+		panfactor.add(btnfactor);
+		this.add(panfactor, BorderLayout.NORTH);
 		
 		JPanel panRes = new JPanel();
 		panRes.setLayout(new GridLayout(1,3));
